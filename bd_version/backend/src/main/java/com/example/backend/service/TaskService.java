@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
 import com.example.backend.model.Task;
-import com.example.backend.repository.TaskDTO;
+import com.example.backend.repository.TaskDAO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskService implements TaskInterface{
 
-    private final TaskDTO repository;
+    private final TaskDAO repository;
     @Override
     public List<Task> getTasks() {
         return repository.getTasks();
