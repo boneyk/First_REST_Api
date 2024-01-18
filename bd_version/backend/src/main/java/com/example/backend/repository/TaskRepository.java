@@ -1,10 +1,9 @@
 package com.example.backend.repository;
 
 
-import com.example.backend.model.Task;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.backend.model.TaskEntity;
+import org.springframework.data.repository.CrudRepository;
 
-public interface TaskRepository extends JpaRepository<Task,Long> {
-    void deleteById(Long id);
-    Task findTaskById(Long id);
+public interface TaskRepository extends CrudRepository<TaskEntity,Long> {
+
 }

@@ -2,7 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.exceptions.TaskAlreadyExistException;
 import com.example.backend.exceptions.TaskNotFoundException;
-import com.example.backend.model.Task;
+import com.example.backend.model.TaskEntity;
 import com.example.backend.service.TaskInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +17,12 @@ public class TaskController {
     private final TaskInterface taskservice;
 
     @GetMapping()
-    public List<Task> getTasks() {
+    public List<TaskEntity> getTasks() {
         return taskservice.getTasks();
     }
 
     @PostMapping("/create_task")
-    public ResponseEntity create(@RequestBody Task task){
+    public ResponseEntity create(@RequestBody TaskEntity task){
         try{
             if(taskservice.findById(task.getId()) == null){
                 taskservice.create(task);
@@ -33,7 +33,7 @@ public class TaskController {
         }catch (TaskAlreadyExistException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }catch (Exception e){
-            return ResponseEntity.badRequest().body("Произошла ошибка");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -53,7 +53,7 @@ public class TaskController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity update(@RequestBody Task task){
+    public ResponseEntity update(@RequestBody TaskEntity task){
         try {
             return ResponseEntity.ok(taskservice.update(task));
         }catch (Exception e){

@@ -1,16 +1,15 @@
 package com.example.backend.service;
 
-import com.example.backend.DTO.TaskWithOutDesc;
-import com.example.backend.model.Task;
-import org.springframework.stereotype.Service;
+import com.example.backend.DTO.TaskWithTitleAndDesc;
+import com.example.backend.model.TaskEntity;
 
 import java.util.List;
 
 
 public interface TaskInterface {
-    List<Task> getTasks();
-    Task create(Task task);
-    TaskWithOutDesc findById(Long id);
-    Task update(Task task);
+    List<TaskEntity> getTasks();
+    TaskEntity create(TaskEntity task);
+    TaskWithTitleAndDesc findById(Long id);
+    TaskEntity update(TaskEntity task);
     void delete(Long id);
 }
